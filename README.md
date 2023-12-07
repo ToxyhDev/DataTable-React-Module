@@ -1,7 +1,7 @@
 # DataTable ⚠️ In development ⚠️
 
-[![npm version](https://badge.fury.io/js/recharts.svg)](http://badge.fury.io/js/datatable-react-module)
-[![npm downloads](https://img.shields.io/npm/dm/recharts.svg?style=flat-square)](https://www.npmjs.com/package/datatable-react-module)
+[![npm version]()]()
+[![npm downloads]()]()
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](/LICENSE)
 
 ## Introduction
