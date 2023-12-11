@@ -1,0 +1,25 @@
+.table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.td,
+.th {
+  border: 2px solid black;
+  padding: 2px 4px;
+  text-align: center;
+  vertical-align: center;
+}
+
+.td {
+  font-size: 14px;
+}
+
+tbody .td:nth-child(odd) {
+  background-color: #ffcf33;
+}
+
+tbody .td:nth-child(even) {
+  background-color: #ffeb33;
+}

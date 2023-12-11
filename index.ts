@@ -1,1 +1,1 @@
-export { Button } from "./src/components/Button"
+export { DataTable } from './src/components/DataTable'
