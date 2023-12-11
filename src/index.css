@@ -51,6 +51,8 @@ figure {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  padding: 16px;
   background-color: white;
   margin: 16px 0;
   border-radius: 12px;

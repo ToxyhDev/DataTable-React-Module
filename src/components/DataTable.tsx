@@ -5,6 +5,8 @@ interface IDataTableProps<T extends object> {
   styleTable?: string
   styleThead?: string
   styleTbody?: string
+  styleTr?: string
+  styleTableContainer?: string
 }
 
 export function DataTable<T extends object>({
@@ -14,6 +16,8 @@ export function DataTable<T extends object>({
   styleTable,
   styleThead,
   styleTbody,
+  styleTr,
+  styleTableContainer,
 }: Readonly<IDataTableProps<T>>) {
   console.log(data)
   console.log(styleTable)
@@ -31,28 +35,34 @@ export function DataTable<T extends object>({
   console.log(columns)
 
   return (
-    <table className={styleTable}>
-      {columnTitle === undefined ? (
-        ''
-      ) : (
-        <thead>
-          <tr className={styleThead}>
-            {columnTitle.map((column, index) => (
-              <th key={index}>{column}</th>
-            ))}
-          </tr>
-        </thead>
-      )}
+    <div className={styleTableContainer}>
+      <table className={styleTable}>
+        {columnTitle === undefined ? (
+          ''
+        ) : (
+          <thead>
+            <tr className={styleTr}>
+              {columnTitle.map((column, index) => (
+                <th className={styleThead} key={index}>
+                  {column}
+                </th>
+              ))}
+            </tr>
+          </thead>
+        )}
 
-      <tbody>
-        {data.map((rowData, rowIndex) => (
-          <tr key={rowIndex} className={styleTbody}>
-            {columns.map((column, colIndex) => (
-              <td key={colIndex}>{String(rowData[column as keyof T])}</td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+        <tbody>
+          {data.map((rowData, rowIndex) => (
+            <tr key={rowIndex} className={styleTr}>
+              {columns.map((column, colIndex) => (
+                <td className={styleTbody} key={colIndex}>
+                  {String(rowData[column as keyof T])}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }
