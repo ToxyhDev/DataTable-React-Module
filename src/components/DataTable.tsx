@@ -1,6 +1,7 @@
 import { SetStateAction, useEffect, useState } from 'react'
 import Entries from './Entries'
 import EntriesFooter from './EntriesFooter'
+import Filter from './Filter'
 
 interface IDataTableProps<T extends object> {
   data: T[]
@@ -18,6 +19,7 @@ interface IDataTableProps<T extends object> {
   styleEntriesFooter?: string
   stylePrevNext?: string
   stylePage?: string
+  filter?: boolean
 }
 
 export function DataTable<T extends object>({
@@ -36,34 +38,36 @@ export function DataTable<T extends object>({
   styleEntriesFooter,
   stylePrevNext,
   stylePage,
+  filter,
 }: Readonly<IDataTableProps<T>>) {
   console.log(data)
 
   const [nbrEntries, setNbrEntries] = useState<string>(`${data.length}`)
-
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [newData, setNewData] = useState(data)
+  const [visibleData, setVisibleData] = useState(data)
+
   useEffect(() => {
     // -> Filter data with number entries
     const startIndex = (currentPage - 1) * Number(nbrEntries)
     const endIndex = startIndex + Number(nbrEntries)
 
-    const visibleData = data.slice(startIndex, endIndex)
-    console.log(nbrEntries)
-    console.log(endIndex)
-    console.log(visibleData)
-    setNewData(visibleData)
-  }, [data, currentPage, nbrEntries])
+    const tableData = newData.slice(startIndex, endIndex)
+
+    setVisibleData(tableData)
+  }, [currentPage, data, nbrEntries, newData])
 
   const handleEntriesChange = (newEntries: SetStateAction<string>) => {
     setNbrEntries(newEntries)
     setCurrentPage(1)
-    console.log(nbrEntries)
   }
 
   const handleChangePage = (newPage: SetStateAction<number>) => {
-    console.log(newPage)
     setCurrentPage(newPage)
+  }
+
+  const handleFilterData = (value: SetStateAction<T[]>) => {
+    setNewData(value)
   }
 
   if (!data || data.length === 0 || data === undefined) {
@@ -96,17 +100,33 @@ export function DataTable<T extends object>({
           ) : (
             <thead>
               <tr className={styleTr}>
-                {columnTitle.map((column, index) => (
-                  <th className={styleThead} key={index}>
-                    {column}
-                  </th>
-                ))}
+                {columnTitle.map((column, index) => {
+                  if (filter === true) {
+                    return (
+                      <Filter<T>
+                        key={index}
+                        data={newData}
+                        onChangeData={handleFilterData}
+                        element={column}
+                        styleClass={styleThead}
+                        keyIndex={index}
+                        dataColumn={columns}
+                      />
+                    )
+                  } else {
+                    return (
+                      <th className={styleThead} key={index}>
+                        {column}
+                      </th>
+                    )
+                  }
+                })}
               </tr>
             </thead>
           )}
 
           <tbody>
-            {newData.map((rowData, rowIndex) => (
+            {visibleData.map((rowData, rowIndex) => (
               <tr key={rowIndex} className={styleTr}>
                 {columns.map((column, colIndex) => (
                   <td className={styleTbody} key={colIndex}>

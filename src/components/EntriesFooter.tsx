@@ -32,7 +32,6 @@ export default function EntriesFooter({
     const endIndex = startIndex + Number(entries)
     const totalPage =
       Number(entries) !== 0 ? Math.ceil(total / Number(entries)) : 0
-    console.log(totalPage)
     setStartEntries(startIndex + 1)
     setEndEntries(endIndex)
     setTotalEntries(total)

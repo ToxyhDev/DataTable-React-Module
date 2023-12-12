@@ -1,4 +1,4 @@
-# DataTable ⚠️ In development ⚠️
+# DataTable - In development
 
 [![npm version]()]()
 [![npm downloads]()]()
@@ -7,6 +7,7 @@
 ## Introduction
 
 **Datatable** is a library built with **React**, which allows you to easily create tables to use data.
+This library uses **CSS Modules** or **SASS modules** to add style.
 
 The objective of this library is to simplify table creation for you. A task that can quickly become complicated when you want to integrate data dynamically.
 
@@ -19,13 +20,26 @@ Documentation at
 ## Exmaples:
 
 ```jsx
-<DataTable data={myData} title="Current Employees">
-  <Entries />
-  <SearchBar />
+import styles from './index.module.scss'
 
-  <Column order={1} title="First Name" dataId={firstName} filter={true}>
-  <Column order={2} title="Last Name" dataId={lastName} filter={true}>
-</DataTable>
+<DataTable<IEmployee>
+  data={mockData.data}
+  columnOrder={customColumnOrder}
+  columnTitle={customColumnTitle}
+  styleDataTable={styles.datatable}
+  styleToolsBar={styles.toolsbar}
+  styleTableContainer={styles.tableContainer}
+  styleTable={styles.table}
+  styleThead={styles.th}
+  styleTbody={styles.td}
+  styleTr={styles.tr}
+  entries={true}
+  styleEntries={styles.entries}
+  styleEntriesFooter={styles.entriesFooter}
+  stylePrevNext={styles.btnPrevNext}
+  stylePage={styles.btnPage}
+  filter={true}
+></DataTable>
 ```
 
 ## Installation

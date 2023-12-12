@@ -15,8 +15,6 @@ interface IEmployee {
 }
 
 function App() {
-  console.log(mockData)
-
   const customColumnOrder = [
     'firstName',
     'lastName',
@@ -56,6 +54,7 @@ function App() {
       styleEntriesFooter={styles.entriesFooter}
       stylePrevNext={styles.btnPrevNext}
       stylePage={styles.btnPage}
+      filter={true}
     ></DataTable>
   )
 }
