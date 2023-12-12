@@ -44,11 +44,18 @@ function App() {
       data={mockData.data}
       columnOrder={customColumnOrder}
       columnTitle={customColumnTitle}
+      styleDataTable={styles.datatable}
+      styleToolsBar={styles.toolsbar}
       styleTableContainer={styles.tableContainer}
       styleTable={styles.table}
       styleThead={styles.th}
       styleTbody={styles.td}
       styleTr={styles.tr}
+      entries={true}
+      styleEntries={styles.entries}
+      styleEntriesFooter={styles.entriesFooter}
+      stylePrevNext={styles.btnPrevNext}
+      stylePage={styles.btnPage}
     ></DataTable>
   )
 }

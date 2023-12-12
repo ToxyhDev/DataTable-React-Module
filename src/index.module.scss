@@ -1,3 +1,16 @@
+.datatable {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.toolsbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 16px;
+}
+
 .tableContainer {
   overflow: scroll;
   border-radius: 15px;
@@ -44,4 +57,36 @@ tbody .tr {
   &:hover {
     background-color: #dfdfdf;
   }
+}
+
+.entriesFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 16px;
+  & div {
+    display: flex;
+    gap: 8px;
+    & p {
+      font-style: italic;
+      color: #dfdfdf;
+    }
+  }
+}
+
+.btnPrevNext {
+  cursor: pointer;
+  border: none;
+  font-size: 14px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnPage {
+  cursor: pointer;
+  padding: 6px 12px;
+  border: 1.5px solid #12002b;
+  border-radius: 6px;
 }
