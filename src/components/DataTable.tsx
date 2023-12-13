@@ -1,7 +1,7 @@
 import { SetStateAction, useEffect, useState } from 'react'
 import Entries from './Entries'
 import EntriesFooter from './EntriesFooter'
-import Filter from './Filter'
+import Sort from './Sort'
 import SearchBar from './SearchBar'
 
 interface IDataTableProps<T extends object> {
@@ -21,7 +21,7 @@ interface IDataTableProps<T extends object> {
   styleEntriesFooter?: string
   stylePrevNext?: string
   stylePage?: string
-  filter?: boolean
+  sort?: boolean
   searchBar?: boolean
 }
 
@@ -42,7 +42,7 @@ export function DataTable<T extends object>({
   styleEntriesFooter,
   stylePrevNext,
   stylePage,
-  filter,
+  sort,
   searchBar,
 }: Readonly<IDataTableProps<T>>) {
   const [nbrEntries, setNbrEntries] = useState<string>(`${data.length}`)
@@ -116,9 +116,9 @@ export function DataTable<T extends object>({
             <thead>
               <tr className={styleTr}>
                 {columnTitle.map((column, index) => {
-                  if (filter === true) {
+                  if (sort === true) {
                     return (
-                      <Filter<T>
+                      <Sort<T>
                         key={index}
                         data={newData}
                         originData={newFilterData}

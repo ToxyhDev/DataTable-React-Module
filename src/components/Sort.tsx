@@ -10,7 +10,7 @@ interface IFilterProps<T extends object> {
   dataColumn: string[]
 }
 
-export default function Filter<T extends object>({
+export default function Sort<T extends object>({
   data,
   originData,
   onChangeData,

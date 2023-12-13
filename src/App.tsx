@@ -55,7 +55,7 @@ function App() {
       styleEntriesFooter={styles.entriesFooter}
       stylePrevNext={styles.btnPrevNext}
       stylePage={styles.btnPage}
-      filter={true}
+      sort={true}
       searchBar={true}
     ></DataTable>
   )
