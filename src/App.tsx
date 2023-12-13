@@ -55,6 +55,7 @@ function App() {
       stylePrevNext={styles.btnPrevNext}
       stylePage={styles.btnPage}
       filter={true}
+      searchBar={true}
     ></DataTable>
   )
 }

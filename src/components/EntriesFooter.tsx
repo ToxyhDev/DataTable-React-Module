@@ -100,7 +100,6 @@ export default function EntriesFooter({
                   )
                 }
               })}
-        {/* <button className={stylePage}>{currentPage}</button> */}
         {currentPage === totalPages ? (
           <p className={stylePrevNext}>Next</p>
         ) : (

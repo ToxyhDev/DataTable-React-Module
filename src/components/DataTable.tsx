@@ -2,6 +2,7 @@ import { SetStateAction, useEffect, useState } from 'react'
 import Entries from './Entries'
 import EntriesFooter from './EntriesFooter'
 import Filter from './Filter'
+import SearchBar from './SearchBar'
 
 interface IDataTableProps<T extends object> {
   data: T[]
@@ -20,6 +21,7 @@ interface IDataTableProps<T extends object> {
   stylePrevNext?: string
   stylePage?: string
   filter?: boolean
+  searchBar?: boolean
 }
 
 export function DataTable<T extends object>({
@@ -39,12 +41,13 @@ export function DataTable<T extends object>({
   stylePrevNext,
   stylePage,
   filter,
+  searchBar,
 }: Readonly<IDataTableProps<T>>) {
-  console.log(data)
-
   const [nbrEntries, setNbrEntries] = useState<string>(`${data.length}`)
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [newData, setNewData] = useState(data)
+  const [newFilterData, setNewFilterData] = useState(data)
+
   const [visibleData, setVisibleData] = useState(data)
 
   useEffect(() => {
@@ -53,7 +56,6 @@ export function DataTable<T extends object>({
     const endIndex = startIndex + Number(nbrEntries)
 
     const tableData = newData.slice(startIndex, endIndex)
-
     setVisibleData(tableData)
   }, [currentPage, data, nbrEntries, newData])
 
@@ -68,6 +70,11 @@ export function DataTable<T extends object>({
 
   const handleFilterData = (value: SetStateAction<T[]>) => {
     setNewData(value)
+  }
+
+  const handleSearchData = (value: SetStateAction<T[]>) => {
+    setNewData(value)
+    setNewFilterData(value)
   }
 
   if (!data || data.length === 0 || data === undefined) {
@@ -91,6 +98,11 @@ export function DataTable<T extends object>({
         ) : (
           ''
         )}
+        {searchBar ? (
+          <SearchBar<T> data={data} onChangeData={handleSearchData} />
+        ) : (
+          ''
+        )}
       </div>
 
       <div className={styleTableContainer}>
@@ -106,6 +118,7 @@ export function DataTable<T extends object>({
                       <Filter<T>
                         key={index}
                         data={newData}
+                        originData={newFilterData}
                         onChangeData={handleFilterData}
                         element={column}
                         styleClass={styleThead}
@@ -141,7 +154,7 @@ export function DataTable<T extends object>({
       {entries ? (
         <EntriesFooter
           entries={nbrEntries}
-          total={data.length}
+          total={newData.length}
           page={currentPage}
           onChangePage={handleChangePage}
           styleEntriesFooter={styleEntriesFooter}

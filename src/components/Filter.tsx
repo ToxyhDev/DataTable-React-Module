@@ -2,6 +2,7 @@ import { MouseEvent, useState } from 'react'
 
 interface IFilterProps<T extends object> {
   data: T[]
+  originData: T[]
   onChangeData: (value: T[]) => void
   element: string
   styleClass?: string
@@ -11,13 +12,13 @@ interface IFilterProps<T extends object> {
 
 export default function Filter<T extends object>({
   data,
+  originData,
   onChangeData,
   element,
   styleClass,
   keyIndex,
   dataColumn,
-}: IFilterProps<T>) {
-  const [originData] = useState(data)
+}: Readonly<IFilterProps<T>>) {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc' | 'none'>('none')
   const [indicator, setIndicator] = useState('')
   const handleSortChange = () => {
