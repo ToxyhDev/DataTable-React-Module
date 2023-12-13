@@ -20,7 +20,6 @@ export default function Entries({
         aria-controls="main-table"
         onChange={handleChange}
       >
-        <option value={2}>2</option>
         <option value={5}>5</option>
         <option value={10}>10</option>
         <option value={25}>25</option>

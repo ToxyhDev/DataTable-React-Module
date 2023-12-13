@@ -40,6 +40,7 @@ function App() {
   return (
     <DataTable<IEmployee>
       data={mockData.data}
+      title="Current Employees"
       columnOrder={customColumnOrder}
       columnTitle={customColumnTitle}
       styleDataTable={styles.datatable}

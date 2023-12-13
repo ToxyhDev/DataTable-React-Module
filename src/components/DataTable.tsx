@@ -6,6 +6,7 @@ import SearchBar from './SearchBar'
 
 interface IDataTableProps<T extends object> {
   data: T[]
+  title?: string
   columnOrder?: string[]
   columnTitle?: string[]
   styleDataTable?: string
@@ -26,6 +27,7 @@ interface IDataTableProps<T extends object> {
 
 export function DataTable<T extends object>({
   data,
+  title,
   columnOrder,
   columnTitle,
   styleDataTable,
@@ -89,6 +91,7 @@ export function DataTable<T extends object>({
 
   return (
     <div className={styleDataTable}>
+      {title ? <h2>{title}</h2> : null}
       <div className={styleToolsBar}>
         {entries ? (
           <Entries
