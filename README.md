@@ -25,6 +25,7 @@ import styles from './index.module.scss'
 
 <DataTable<IEmployee>
   data={mockData.data}
+  title="Current Employees"
   columnOrder={customColumnOrder}
   columnTitle={customColumnTitle}
   styleDataTable={styles.datatable}
@@ -39,7 +40,8 @@ import styles from './index.module.scss'
   styleEntriesFooter={styles.entriesFooter}
   stylePrevNext={styles.btnPrevNext}
   stylePage={styles.btnPage}
-  filter={true}
+  sort={true}
+  searchBar={true}
 ></DataTable>
 ```
 
@@ -140,6 +142,14 @@ const customColumnTitle = [
 ## Other features
 
 - It is possible to add additional functionality with props
+
+### Title
+
+Table title.
+
+```tsx
+<DataTable title="Title" />
+```
 
 ### Entries
 
